@@ -6,7 +6,8 @@ exports.getVenuesList = function (req, res) {
     var coordinates = req.query.coordinates;
     var token = process.env.API_TOKEN;
     var version = process.env.API_VERSION;
-    var params = ('?ll=' + coordinates + '&oauth_token=' + token + '&v=' + version);
+    var limit = 10;
+    var params = ('?ll=' + coordinates + '&limit=' + limit + '&oauth_token=' + token + '&v=' + version);
 
     return url + params;
   }
@@ -15,7 +16,6 @@ exports.getVenuesList = function (req, res) {
     if (err) {
       res.status(400).jsonp({'ERROR': err});
     } else {
-      res.type('application/javascript');
       res.jsonp({
         'venues': JSON.parse(body).response.venues
       });
