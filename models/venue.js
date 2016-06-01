@@ -1,9 +1,9 @@
-function Venue(name, description, bestPhoto, photos, hours) {
-  this.name = name;
-  this.description = description || '';
-  this.bestPhoto = bestPhoto || '';
-  this.photos = photos || [];
-  this.hours = hours || {};
+function Venue(args = {}) {
+  this.name = args.name;
+  this.description = args.description || '';
+  this.bestPhoto = args.bestPhoto || '';
+  this.photos = args.photos || [];
+  this.hours = args.hours || {};
 }
 
 Venue.prototype.isOpen = function () {
