@@ -1,4 +1,5 @@
 var request = require('request');
+var venueFactory = require('../models/venueFactory');
 
 exports.getVenuesList = function (req, res) {
   function constructUrl() {
@@ -16,8 +17,15 @@ exports.getVenuesList = function (req, res) {
     if (err) {
       res.status(400).jsonp({'ERROR': err});
     } else {
+      var apiVenues = JSON.parse(body).response.venues;
+      var venues = [];
+
+      apiVenues.forEach(function (apiVenue) {
+        venues.push(venueFactory.createVenue(apiVenue));
+      });
+
       res.jsonp({
-        'venues': JSON.parse(body).response.venues
+        'venues': venues
       });
     }
   });
