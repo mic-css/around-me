@@ -4,11 +4,12 @@ function Venue(args = {}) {
   this.bestPhoto = args.bestPhoto || '';
   this.photos = args.photos || [];
   this.hours = args.hours || {};
-}
+  this.open = isOpen();
 
-Venue.prototype.isOpen = function () {
-  // TODO: implement opening hours logic
-  return true;
-};
+  function isOpen() {
+    // TODO: implement
+    return true;
+  }
+}
 
 module.exports = Venue;

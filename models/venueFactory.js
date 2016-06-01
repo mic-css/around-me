@@ -7,9 +7,6 @@ exports.createVenue = function(args = {}) {
     return false;
   }
 
-  // TODO: remove log
-  console.log(args);
-
   // var bestPhoto = constructPhotoUrl(args.bestPhoto.prefix, args.bestPhoto.suffix);
 
   // var apiPhotos = args.photos.groups.items;
