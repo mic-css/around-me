@@ -6,11 +6,11 @@ function Venue(args = {}) {
   this.photos = args.photos || [];
   this.hours = args.hours || {};
   this.open = isOpen();
+}
 
-  function isOpen() {
-    // TODO: implement
-    return true;
-  }
+function isOpen() {
+  // TODO: implement
+  return true;
 }
 
 module.exports = Venue;

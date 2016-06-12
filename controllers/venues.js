@@ -19,9 +19,9 @@ function getVenueList(url) {
       } else {
         var apiVenues = JSON.parse(body).response.venues;
 
-        async.map(apiVenues, venueFactory.createVenue, function (error, venues) {
-          if (error) {
-            reject(error);
+        async.map(apiVenues, venueFactory.createVenue, function (err, venues) {
+          if (err) {
+            reject(err);
           } else {
             resolve(venues);
           }
@@ -32,5 +32,15 @@ function getVenueList(url) {
 }
 
 function getVenueInfo(venue) {
-  // TODO: implement
+  return new Promise(function (resolve, reject) {
+    var venueUrl = urlConstructor.constructUrl(venue.id);
+
+    request.get(venueUrl, function (err, response, body) {
+      if (err) {
+        reject(err);
+      } else {
+
+      }
+    });
+  });
 }

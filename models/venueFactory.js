@@ -4,7 +4,7 @@ exports.createVenue = function(args, callback) {
   var venue, error;
   var noArgs = Object.getOwnPropertyNames(args).length === 0;
 
-  if (noArgs) {
+  if (typeof args === 'undefined' || noArgs) {
     error = new Error('No argument passed to venueFactory');
   }
 
@@ -36,9 +36,11 @@ exports.createVenue = function(args, callback) {
     // hours : args.hours
   });
 
-  if (typeof Venue == 'undefined') {
-    error = new Error('Failed to initialize new Venue instance');
+  if (typeof callback !== 'undefined') {
+    callback(error, venue);
+  } else if (typeof error !== 'undefined') {
+    throw error;
+  } else {
+    return venue;
   }
-
-  callback(error, venue);
 };
