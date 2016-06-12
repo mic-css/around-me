@@ -4,10 +4,10 @@ var venueFactory = require('../models/venueFactory');
 var urlConstructor = require('../modules/urlConstructor');
 
 exports.getVenues = function (req, res) {
-  var locationUrl = urlConstructor.constructUrl(req.query.coordinates);
+  var locationUrl = urlConstructor.constructSearchUrl(req.query.coordinates);
 
   getVenueList(locationUrl).then(function (venues) {
-    async.map(venues, getVenueInfo, function (err, venues) {
+    async.map(venues, updateVenueInfo, function (err, venues) {
       if (err) {
         res.jsonp({ 'error': err });
       } else {
@@ -37,23 +37,46 @@ function getVenueList(url) {
   });
 }
 
-function getVenueInfo(venue, callback) {
+function getVenueDetails(venue) {
+  var url = urlConstructor.constructVenueUrl(venue.id);
+
+  return new Promise(function (resolve, reject) {
+    request.get(url, function (err, response, body) {
+      if (err) {
+        reject(err);
+      } else {
+        var venueInfo = JSON.parse(body).response.venue;
+
+        venue = venueFactory.updateVenue(venue, venueInfo);
+        resolve(venue);
+      }
+    });
+  });
+}
+
+function getVenueHours(venue) {
+  var url = urlConstructor.constructHoursUrl(venue.id);
+
+  return new Promise(function (resolve, reject) {
+    request.get(url, function (err, response, body) {
+      if (err) {
+        reject(err);
+      } else {
+        var venueHours = JSON.parse(body).response.hours;
+
+        venue = venueFactory.updateVenue(venue, venueHours);
+        resolve(venue);
+      }
+    });
+  });
+}
+
+function updateVenueInfo(venue, callback) {
   var error;
   var venueUrl = urlConstructor.constructVenueUrl(venue.id);
 
-  request.get(venueUrl, function (err, response, body) {
-    if (err) {
-      callback(error);
-    } else {
-      var venueInfo = JSON.parse(body).response.venue;
-
-      venueFactory.updateVenue(venue, venueInfo, function (err, venue) {
-        if (err) {
-          callback(error);
-        } else {
-          callback(error, venue);
-        }
-      });
-    }
-  });
+  getVenueDetails(venue).then(getVenueHours(venue))
+    .then(function (venue) {
+      callback(error, venue);
+    });
 }

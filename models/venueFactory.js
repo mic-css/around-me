@@ -32,13 +32,17 @@ exports.updateVenue = function (venue, args, callback) {
       venue.description = args.description;
     }
 
-    if (args.photos.count > 0) {
+    if (typeof args.photos !== 'undefined' && args.photos.count > 0) {
       var apiPhotos = args.photos.groups[0].items;
       venue.photos = constructPhotoList(apiPhotos);
     }
 
     if (typeof args.hours !== 'undefined') {
       venue.open = args.hours.isOpen;
+    }
+
+    if (typeof args.timeframes !== 'undefined') {
+      venue.timeframes = args.timeframes;
     }
   }
 
