@@ -4,7 +4,7 @@ var venueFactory = require('../models/venueFactory');
 var urlConstructor = require('../modules/urlConstructor');
 
 exports.getVenues = function (req, res) {
-  var locationUrl = urlConstructor.constructUrl(req);
+  var locationUrl = urlConstructor.constructUrl(req.query.coordinates);
 
   getVenueList(locationUrl).then(function (venues) {
     res.jsonp({ 'venues': venues });
@@ -31,6 +31,6 @@ function getVenueList(url) {
   });
 }
 
-function getVenueInfo(requestResults) {
+function getVenueInfo(venue) {
   // TODO: implement
 }

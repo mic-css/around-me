@@ -28,6 +28,7 @@ exports.createVenue = function(args, callback) {
   // }
 
   venue = new Venue({
+    id : args.id,
     name : args.name,
     description : args.description
     // bestPhoto : bestPhoto,

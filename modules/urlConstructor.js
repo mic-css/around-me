@@ -9,9 +9,8 @@ exports.constructVenueUrl = function(id) {
   return url + '/' + id + params;
 };
 
-exports.constructUrl = function(req) {
+exports.constructUrl = function(coordinates) {
   var url = 'https://api.foursquare.com/v2/venues/search';
-  var coordinates = req.query.coordinates;
   var token = process.env.API_TOKEN;
   var version = process.env.API_VERSION;
   var limit = 10;
