@@ -1,10 +1,11 @@
 var Venue = require('./venue');
 
-exports.createVenue = function(args = {}) {
+exports.createVenue = function(args, callback) {
+  var venue, error;
   var noArgs = Object.getOwnPropertyNames(args).length === 0;
 
   if (noArgs) {
-    return false;
+    error = new Error('No argument passed to venueFactory');
   }
 
   // var bestPhoto = constructPhotoUrl(args.bestPhoto.prefix, args.bestPhoto.suffix);
@@ -26,11 +27,17 @@ exports.createVenue = function(args = {}) {
   //   return prefix.replace(/\/$/, '') + suffix;
   // }
 
-  return new Venue({
+  venue = new Venue({
     name : args.name,
     description : args.description
     // bestPhoto : bestPhoto,
     // photos : photoList,
     // hours : args.hours
   });
+
+  if (typeof Venue == 'undefined') {
+    error = new Error('Failed to initialize new Venue instance');
+  }
+
+  callback(error, venue);
 };

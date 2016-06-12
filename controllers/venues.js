@@ -3,26 +3,34 @@ var async = require('async');
 var venueFactory = require('../models/venueFactory');
 var urlConstructor = require('../modules/urlConstructor');
 
-exports.getVenuesList = function (req, res) {
+exports.getVenues = function (req, res) {
+  var locationUrl = urlConstructor.constructUrl(req);
 
-  request.get(urlConstructor.constructUrl(req), function (err, response, body) {
-    if (err) {
-      res.status(400).jsonp({'ERROR': err});
-    } else {
-      var venues = [];
-
-      var apiVenues = JSON.parse(body).response.venues;
-
-      var venueUrls = apiVenues.map(function (venue) {
-        return urlConstructor.constructVenueUrl(venue.id);
-      });
-
-      apiVenues.forEach(function (apiVenue) {
-        venues.push(venueFactory.createVenue(apiVenue));
-      });
-
-      res.jsonp({'venues': venues});
-
-    }
+  getVenueList(locationUrl).then(function (venues) {
+    res.jsonp({ 'venues': venues });
   });
 };
+
+function getVenueList(url) {
+  return new Promise(function (resolve, reject) {
+    request.get(url, function (err, response, body) {
+      if (err) {
+        reject(err);
+      } else {
+        var apiVenues = JSON.parse(body).response.venues;
+
+        async.map(apiVenues, venueFactory.createVenue, function (error, venues) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(venues);
+          }
+        });
+      }
+    });
+  });
+}
+
+function getVenueInfo(requestResults) {
+  // TODO: implement
+}
