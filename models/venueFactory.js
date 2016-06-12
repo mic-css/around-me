@@ -36,6 +36,10 @@ exports.updateVenue = function (venue, args, callback) {
       var apiPhotos = args.photos.groups[0].items;
       venue.photos = constructPhotoList(apiPhotos);
     }
+
+    if (typeof args.hours !== 'undefined') {
+      venue.open = args.hours.isOpen;
+    }
   }
 
   if (typeof callback === 'function') {

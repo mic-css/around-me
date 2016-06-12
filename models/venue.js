@@ -1,10 +1,9 @@
 function Venue(args = {}) {
-  this.id = args.id;
-  this.name = args.name;
-  this.description = args.description || '';
+  this.id = args.id || null;
+  this.name = args.name || null;
+  this.description = args.description || null;
   this.photos = args.photos || [];
-  this.hours = args.hours || {};
-  this.open = isOpen();
+  this.open = args.open || null;
 }
 
 function isOpen() {
