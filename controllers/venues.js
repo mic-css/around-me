@@ -7,7 +7,13 @@ exports.getVenues = function (req, res) {
   var locationUrl = urlConstructor.constructUrl(req.query.coordinates);
 
   getVenueList(locationUrl).then(function (venues) {
-    res.jsonp({ 'venues': venues });
+    async.map(venues, getVenueInfo, function (err, venues) {
+      if (err) {
+        res.jsonp({ 'error': err });
+      } else {
+        res.jsonp({ 'venues': venues });
+      }
+    });
   });
 };
 
@@ -31,16 +37,23 @@ function getVenueList(url) {
   });
 }
 
-function getVenueInfo(venue) {
-  return new Promise(function (resolve, reject) {
-    var venueUrl = urlConstructor.constructUrl(venue.id);
+function getVenueInfo(venue, callback) {
+  var error;
+  var venueUrl = urlConstructor.constructVenueUrl(venue.id);
 
-    request.get(venueUrl, function (err, response, body) {
-      if (err) {
-        reject(err);
-      } else {
+  request.get(venueUrl, function (err, response, body) {
+    if (err) {
+      callback(error);
+    } else {
+      var venueInfo = JSON.parse(body).response.venue;
 
-      }
-    });
+      venueFactory.updateVenue(venue, venueInfo, function (err, venue) {
+        if (err) {
+          callback(error);
+        } else {
+          callback(error, venue);
+        }
+      });
+    }
   });
 }
