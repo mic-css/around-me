@@ -62,5 +62,6 @@ function constructPhotoList(photos) {
 }
 
 function constructPhotoUrl(prefix, suffix) {
-  return prefix.replace(/\/$/, '') + suffix;
+  var size = '500x500';
+  return prefix + size + suffix;
 }
