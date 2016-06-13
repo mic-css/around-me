@@ -1,4 +1,4 @@
-var Venue = require('./venue');
+var Venue = require('../models/venue');
 
 exports.createVenue = function(args, callback) {
   var venue, error;
@@ -37,12 +37,8 @@ exports.updateVenue = function (venue, args, callback) {
       venue.photos = constructPhotoList(apiPhotos);
     }
 
-    if (typeof args.hours !== 'undefined') {
-      venue.open = args.hours.isOpen;
-    }
-
     if (typeof args.timeframes !== 'undefined') {
-      venue.timeframes = args.timeframes;
+      venue.isOpen = venue.isCurrentlyOpen(args.timeframes);
     }
   }
 

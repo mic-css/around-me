@@ -1,6 +1,6 @@
 var request = require('request');
 var async = require('async');
-var venueFactory = require('../models/venueFactory');
+var venueFactory = require('../modules/venueFactory');
 var urlConstructor = require('../modules/urlConstructor');
 
 exports.getVenues = function (req, res) {
