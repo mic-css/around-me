@@ -2,7 +2,7 @@ angular.module('aroundMe')
   .controller('VenueController', ['PositionService', 'APIService', function (PositionService, APIService) {
     var self = this;
 
-    var baseUrl = 'http://localhost:3000/venues';
+    var baseUrl = 'http://localhost:3000/api/venues';
     var query = '?coordinates=';
 
     PositionService.getCoordinates().then(function positionSuccess(coordinates) {
