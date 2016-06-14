@@ -1,0 +1,16 @@
+$color_grey: #F4F4F4;
+
+header {
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: .6em;
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: center;
+  background-color: $color_grey;
+}

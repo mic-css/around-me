@@ -1,8 +1,79 @@
+header {
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: .6em;
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: center;
+  background-color: #F4F4F4; }
+
+.venue {
+  position: relative;
+  height: 140px;
+  min-width: 250px;
+  width: 85%;
+  max-width: 350px;
+  border-radius: 8px;
+  margin: 6px 0;
+  padding: 10px;
+  background-color: #F4F4F4;
+  background-size: cover;
+  color: white;
+  overflow: hidden; }
+  .venue .venue-status {
+    position: absolute;
+    right: 10px;
+    padding: 3px 6px;
+    font-size: .8em;
+    font-weight: normal;
+    text-transform: uppercase;
+    border-radius: 3px; }
+  .venue .open {
+    background-color: #7FD62E; }
+  .venue .closed {
+    background-color: #D72627; }
+  .venue .venue-text {
+    position: absolute;
+    bottom: 10px; }
+  .venue .venue-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 3px; }
+  .venue .venue-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: .9em;
+    font-weight: lighter; }
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px Helvetica, Arial, sans-serif;
+  color: #282828;
+  min-height: 100%;
+  margin: 0;
+  padding: 0; }
 
 a {
   color: #00B7FF; }
+
+.container {
+  margin-top: 46.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 0 10px; }
+
+.loading-message {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  font-size: 1.5em; }
 
 /*# sourceMappingURL=style.css.map */

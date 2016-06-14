@@ -1,0 +1,52 @@
+.venue {
+  position: relative;
+  height: 140px;
+  min-width: 250px;
+  width: 85%;
+  max-width: 350px;
+  border-radius: 8px;
+  margin: 6px 0;
+  padding: 10px;
+  background-color: $color_grey;
+  background-size: cover;
+  color: white;
+  overflow: hidden;
+
+  .venue-status {
+    position: absolute;
+    right: 10px;
+    padding: 3px 6px;
+    font-size: .8em;
+    font-weight: normal;
+    text-transform: uppercase;
+    border-radius: 3px;
+  }
+
+  .open {
+    background-color: #7FD62E;
+  }
+
+  .closed {
+    background-color: #D72627;
+  }
+
+  .venue-text {
+    position: absolute;
+    bottom: 10px;
+  }
+
+  .venue-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+
+  .venue-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: .9em;
+    font-weight: lighter;
+  }
+}

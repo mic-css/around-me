@@ -1,0 +1,30 @@
+@import "partials/header";
+@import "partials/venue";
+
+body {
+  font: 14px Helvetica, Arial, sans-serif;
+  color: rgb(40, 40, 40);
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.container {
+  margin-top: 46.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 0 10px;
+}
+
+.loading-message {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  font-size: 1.5em;
+}

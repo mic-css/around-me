@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="aroundMe">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Around Me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="javascripts/main.js"></script>
     <script src="javascripts/controllers/venueController.js"></script>
@@ -11,12 +13,20 @@
     <script src="javascripts/services/positionService.js"></script>
   </head>
   <body ng-controller="VenueController as venueCtrl">
-    <h1>Around Me</h1>
-    <span ng-if="!venueCtrl.venues">Finding places around you...</span>
-    <div ng-if="venueCtrl.venues">
-      <p ng-repeat="venue in venueCtrl.venues">
-        {{ venue.name }}
-      </p>
+    <header>
+      <span>Around Me</span>
+    </header>
+    <div class="loading-message" ng-if="!venueCtrl.venues">Finding places around you...</div>
+    <div class="container" ng-if="venueCtrl.venues">
+      <section class="venue" ng-repeat="venue in venueCtrl.venues"
+        ng-style="{'background-image': 'url(' + venue.photos[0] + ')'}">
+        <span class="venue-status" ng-class="venue.isOpen ? 'open' : 'closed'"
+          ng-if="venue.isOpen !== null">{{ venue.isOpen ? 'open' : 'closed' }}</span>
+        <div class="venue-text">
+          <div class="venue-title">{{ venue.name }}</div>
+          <div class="venue-description">{{ venue.description }}</div>
+        </div>
+      </section>
     </div>
   </body>
 </html>
