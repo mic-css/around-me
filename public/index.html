@@ -12,10 +12,11 @@
   </head>
   <body ng-controller="VenueController as venueCtrl">
     <h1>Around Me</h1>
-    <span ng-if="!venueCtrl.coordinates">Finding your location...</span>
-    <p ng-if="venueCtrl.coordinates">
-      You are here:<br />
-      <span>{{venueCtrl.coordinates.latitude}}, {{venueCtrl.coordinates.longitude}}</span>
-    </p>
+    <span ng-if="!venueCtrl.venues">Finding places around you...</span>
+    <div ng-if="venueCtrl.venues">
+      <p ng-repeat="venue in venueCtrl.venues">
+        {{ venue.name }}
+      </p>
+    </div>
   </body>
 </html>

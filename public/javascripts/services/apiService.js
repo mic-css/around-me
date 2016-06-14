@@ -1,8 +1,6 @@
 angular.module('aroundMe')
-  .service('apiService', ['$http', function ($http) {
+  .service('APIService', ['$q', '$http', function ($q, $http) {
     var self = this;
 
-    this.get = function (url) {
-      $http.get(url);
-    };
+    self.get = $http.get;
   }]);
