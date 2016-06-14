@@ -1,14 +1,14 @@
 angular.module('aroundMe')
-  .service('PositionService', [function () {
+  .service('PositionService', ['$q', function ($q) {
     var self = this;
 
-    self.coordinates = navigator.geolocation.getCurrentPosition(success, error);
-
-    function success(position) {
-      return position.coordinates;
-    }
-
-    function error(error) {
-      return new Error(error);
-    }
+    self.getCoordinates = function () {
+      return $q(function (resolve, reject) {
+        navigator.geolocation.getCurrentPosition(function success(position) {
+          resolve(position.coords);
+        }, function error(err) {
+          reject(err);
+        });
+      });
+    };
   }]);

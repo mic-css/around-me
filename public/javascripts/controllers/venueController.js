@@ -1,9 +1,13 @@
 angular.module('aroundMe')
-  .controller('VenueController', [function () {
+  .controller('VenueController', ['PositionService', function (PositionService) {
     var self = this;
-
-    self.greeting = "Hello world";
 
     var baseUrl = 'http://localhost:3000/venues';
     var query = '?coordinates=';
+    
+    PositionService.getCoordinates().then(function success(coordinates) {
+      self.coordinates = coordinates;
+    }, function error(err) {
+      console.warn('Failed to retrieve location: ' + err);
+    });
   }]);
