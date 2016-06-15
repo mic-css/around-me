@@ -1,7 +1,5 @@
-// TODO: refactor into single
-
 exports.constructSearchUrl = function (coordinates) {
-  var url = process.env.API_URL;
+  var url = 'https://api.foursquare.com/v2/venues';
   var token = process.env.API_TOKEN;
   var version = process.env.API_VERSION;
   var limit = 10;
@@ -11,7 +9,7 @@ exports.constructSearchUrl = function (coordinates) {
 };
 
 exports.constructVenueUrl = function (id) {
-  var url = process.env.API_URL;
+  var url = 'https://api.foursquare.com/v2/venues';
   var token = process.env.API_TOKEN;
   var version = process.env.API_VERSION;
   var params = ('?oauth_token=' + token + '&v=' + version);
@@ -21,7 +19,7 @@ exports.constructVenueUrl = function (id) {
 
 
 exports.constructHoursUrl = function (id) {
-  var url = process.env.API_URL;
+  var url = 'https://api.foursquare.com/v2/venues';
   var token = process.env.API_TOKEN;
   var version = process.env.API_VERSION;
   var params = ('?oauth_token=' + token + '&v=' + version);

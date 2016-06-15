@@ -19,14 +19,13 @@ $ npm i
 ```
 
 #### Env variables
-**Important:** In order to set environment variables with the API URL, authorization token and version.
+**Important:** In order to set environment variables with the API authorization token and version.
 
 The application uses [dotenv](https://www.npmjs.com/package/dotenv) to manage environment variables. To set your own, create a `.env` file in the root directory with the following data:
 ```sh
 # .env
-API_URL=https://api.foursquare.com/v2/venues
 API_TOKEN=EXAMPLEAUTHORIZATIONTOKEN123456789
-API_VERSION=20160419
+API_VERSION=YYYYMMDD
 ```
 
 #### Run
@@ -49,7 +48,7 @@ The purpose of this project was to build a small, single-page, full-stack applic
 
 This posed a good opportunity to get more full-stack javascript experience, particularly with the unfamiliar architectural design of processing a third-party API from the back-end.
 
-Due to limited time, the application was not test-driven or tested, and requires a refactoring.
+Due to limited time, the application was not test-driven or tested, and requires refactoring.
 
 ## Challenges
 
